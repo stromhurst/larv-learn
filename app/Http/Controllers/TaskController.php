@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -30,7 +31,9 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        Task::create($request->validated());
+        $task = Auth::user()->tasks()->create($request->validated());
+        // $task->create($request->validated());
+        $task->author = auth()->user()->id;
         return redirect()->route('tasks.index');
     }
 

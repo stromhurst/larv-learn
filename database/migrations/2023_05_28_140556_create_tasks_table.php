@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('user_id')->index(); // how to get to populate this.
             $table->timestamps();
         });
     }
