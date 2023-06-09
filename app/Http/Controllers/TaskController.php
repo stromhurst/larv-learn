@@ -31,9 +31,10 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $task = Auth::user()->tasks()->create($request->validated());
+        // $task = Auth::user()->tasks()->create($request->validated());
         // $task->create($request->validated());
-        $task->author = auth()->user()->id;
+        $task = Task::create($request->validated());
+        // $task->user_id = auth()->user()->id;
         return redirect()->route('tasks.index');
     }
 

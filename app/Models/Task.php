@@ -4,24 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'.'user_id'];
+    protected $fillable = ['name','author'];
 
-    // public static function boot()
-    // {
-    //     parent::boot();
-
-    //     self::creating(function ($task) {
-    //         $task->author = auth()->user()->id;
-    //     });
-    // }
-
-    public function user_id()
+    public static function boot()
     {
-        return $this->belongsTo(User::class, 'id');
+        parent::boot();
+
+        self::creating(function ($task) {
+            $task->author = auth()->user()->id;
+        });
     }
     
+    public function getAuthorName($id){
+        return User::find($id)->name;
+    }
 }
