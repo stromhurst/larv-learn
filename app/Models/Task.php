@@ -20,7 +20,7 @@ class Task extends Model
         });
     }
     
-    public function getAuthorName($id){
-        return User::find($id)->name;
+    public function getAuthorName(){
+        return User::find($this->author)->name;
     }
 }

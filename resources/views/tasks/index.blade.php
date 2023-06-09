@@ -31,7 +31,7 @@
                                     {{ $task->name }}
                                 </td>
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    {{ $task->getAuthorName($task->author) }}
+                                    {{ $task->getAuthorName() }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <x-link href="{{ route('tasks.edit', $task) }}">Edit</x-link>
